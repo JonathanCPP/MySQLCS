@@ -8,5 +8,15 @@ namespace MySQLProject
 {
     class SQLvarchar
     {
+        public string Name;
+        private int _length;
+        public int Num;
+
+        public SQLvarchar(string name, int length, int num)
+        {
+            Name = name;
+            _length = length;
+            Num = num;
+        }
     }
 }
