@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "efb996d1-c462-4718-b02d-2241b85ab9cc": {
+      "ProjectGuid": "efb996d1-c462-4718-b02d-2241b85ab9cc",
+      "DisplayName": "MySQLProject",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
