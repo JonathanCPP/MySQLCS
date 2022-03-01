@@ -14,13 +14,14 @@ namespace MySQLProject
     public partial class frmMain : Form
     {
         private Network network;
-        string lastSelected;
+        TreeNode selected;
+        TableCommand tableCommand;
 
         public frmMain()
         {
             InitializeComponent();
             network = new Network();
-            lastSelected = string.Empty;
+            tableCommand = new TableCommand();
         }
 
         private void BtnConnect_Click(object sender, EventArgs e)
@@ -83,21 +84,6 @@ namespace MySQLProject
             tvDB.Nodes.Clear();
         }
 
-        private void ShowContext(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right && e.Node.ContextMenuStrip != null && tvDB.SelectedNode != null)
-            {
-                lastSelected = tvDB.SelectedNode.Text;
-                e.Node.ContextMenuStrip.Show();
-            }
-        }
-
-        private void deleteDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            network.DeleteDatabase(lastSelected);
-            RefreshAll();
-        }
-
         void RefreshAll()
         {
             network.RefreshDBData();
@@ -126,13 +112,21 @@ namespace MySQLProject
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (tvDB.SelectedNode != null)
+            if (selected != null)
             {
-                string ElementToDelete = tvDB.SelectedNode.Text;
+                string ElementToDelete = selected.FullPath;
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete " + ElementToDelete + '?', "Delete Database", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    network.DeleteDatabase(ElementToDelete);
+                    if(selected.Level == 0)
+                    {
+                        network.DeleteDatabase(ElementToDelete);
+                    }
+                    else
+                    {
+                        network.DeleteTable(ElementToDelete);
+                    }
+                    
                 }
             }
             RefreshAll();
@@ -140,7 +134,56 @@ namespace MySQLProject
 
         private void BtnCreateTable_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(tableCommand.GetValues());
+            if (txbTableName.Text != string.Empty)
+            {
+                network.AddTable(selected.Text, txbTableName.Text, tableCommand.GetValues());
+            }
+            RefreshAll();
+        }
 
+        private void ClickTreeView(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            selected = e.Node;
+            if (selected != null)
+            {
+                lblSelected.Text = selected.FullPath;
+                if (selected.Level == 0)
+                {
+                    btnCreateTable.Enabled = true;
+                }
+                else
+                {
+                    btnCreateTable.Enabled = false;
+                }
+            }
+        }
+
+        public void RefreshCreateTable(string text)
+        {
+            txbTableCreate.Text = text;
+        }
+
+        private void BtnAddElement_Click(object sender, EventArgs e)
+        {
+            if (cmbType.Text != string.Empty && txbColName.Text != string.Empty &&
+                int.TryParse(txbLen.Text, out int num))
+            {
+                tableCommand.AddElement(cmbType.Text, txbColName.Text, num);
+                txbTableCreate.Text = tableCommand.ConvertToCommand();
+            }
+
+        }
+
+        private void ClearTableCreation()
+        {
+            txbTableCreate.Clear();
+        }
+
+        private void BtnClearTable_Click(object sender, EventArgs e)
+        {
+            ClearTableCreation();
+            tableCommand.ClearTable();
         }
     }
 }

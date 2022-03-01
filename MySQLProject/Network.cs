@@ -90,15 +90,26 @@ namespace MySQLProject
         {
             if (name != string.Empty)
             {
-                SendCommand("DROP DATABASE `" + name + "`;");
+                SendCommand("DROP DATABASE IF EXISTS `" + name + "`;");
             }
         }
 
-        public void AddTable(string database, string name)
+        public void DeleteTable(string name)
+        {
+            name = name.Replace('\\','.');
+
+            if (name != string.Empty)
+            {
+                SendCommand("DROP TABLE IF EXISTS " + name + ";");
+            }
+        }
+
+        public void AddTable(string database, string name, string values)
         {
             if (database != string.Empty && name != string.Empty)
             {
-                SendCommand("USE " + database + "; CREATE TABLE " + name + "(column1 int);");
+                SendCommand("CREATE TABLE IF NOT EXISTS "+database+'.'+name+'('+values+");");
+                MessageBox.Show("CREATE TABLE IF NOT EXISTS " + database + '.' + name + '(' + values + ");");
             }
         }
 
@@ -116,8 +127,7 @@ namespace MySQLProject
             {
                 MySql.Data.MySqlClient.MySqlCommand command = SQLConnection.CreateCommand();
                 command.CommandText = request;
-                MySql.Data.MySqlClient.MySqlDataReader reader = command.ExecuteReader();
-                reader.Close();
+                command.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException) { }
         }

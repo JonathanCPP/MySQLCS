@@ -9,13 +9,13 @@ namespace MySQLProject
     class SQLvarchar
     {
         public string Name;
-        private int _length;
+        public int Length;
         public int Num;
 
         public SQLvarchar(string name, int length, int num)
         {
             Name = name;
-            _length = length;
+            Length = length;
             Num = num;
         }
     }

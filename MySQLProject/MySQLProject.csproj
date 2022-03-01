@@ -99,7 +99,11 @@
     <Compile Include="Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLfloat.cs" />
+    <Compile Include="SQLint.cs" />
+    <Compile Include="SQLvarchar.cs" />
     <Compile Include="Table.cs" />
+    <Compile Include="TableCommand.cs" />
     <EmbeddedResource Include="MySQLApp.resx">
       <DependentUpon>MySQLApp.cs</DependentUpon>
     </EmbeddedResource>
