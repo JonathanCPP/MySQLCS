@@ -1,12 +1,5 @@
 ﻿using System;
-using MySql.Data.MySqlClient;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MySQLProject
@@ -184,6 +177,16 @@ namespace MySQLProject
         {
             ClearTableCreation();
             tableCommand.ClearTable();
+        }
+
+        private void DoubleClickTreeView(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            selected = e.Node;
+            if(selected != null && selected.Level == 1)
+            {
+                var tabViewer = new TableViewer(selected.FullPath, network);
+                tabViewer.ShowDialog();
+            }
         }
     }
 }

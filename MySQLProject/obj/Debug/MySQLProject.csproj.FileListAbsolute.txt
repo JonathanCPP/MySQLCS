@@ -97,3 +97,4 @@ F:\01-projets\_042-P_GesProj2\MySQLProject\MySQLProject\bin\Debug\System.Runtime
 F:\01-projets\_042-P_GesProj2\MySQLProject\MySQLProject\obj\Debug\MySQLProject.Properties.Resources.resources
 F:\01-projets\_042-P_GesProj2\MySQLProject\MySQLProject\obj\Debug\MySQLProject.csproj.CoreCompileInputs.cache
 F:\01-projets\_042-P_GesProj2\MySQLProject\MySQLProject\obj\Debug\MySQLProject.csproj.CopyComplete
+F:\01-projets\_042-P_GesProj2\MySQLProject\MySQLProject\obj\Debug\MySQLProject.TableViewer.resources

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace MySQLProject
 {
-    class Network
+    public class Network
     {
         public MySql.Data.MySqlClient.MySqlConnection SQLConnection;
         public bool Connected;
@@ -96,7 +96,7 @@ namespace MySQLProject
 
         public void DeleteTable(string name)
         {
-            name = name.Replace('\\','.');
+            name = name.Replace('\\', '.');
 
             if (name != string.Empty)
             {
@@ -108,7 +108,7 @@ namespace MySQLProject
         {
             if (database != string.Empty && name != string.Empty)
             {
-                SendCommand("CREATE TABLE IF NOT EXISTS "+database+'.'+name+'('+values+");");
+                SendCommand("CREATE TABLE IF NOT EXISTS " + database + '.' + name + '(' + values + ");");
                 MessageBox.Show("CREATE TABLE IF NOT EXISTS " + database + '.' + name + '(' + values + ");");
             }
         }

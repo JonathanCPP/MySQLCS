@@ -30,6 +30,7 @@
         {
             this.btnConnect = new System.Windows.Forms.Button();
             this.pnlDB = new System.Windows.Forms.Panel();
+            this.btnClearTable = new System.Windows.Forms.Button();
             this.lblSelected = new System.Windows.Forms.Label();
             this.txbTableCreate = new System.Windows.Forms.TextBox();
             this.lblColName = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnCreateTable = new System.Windows.Forms.Button();
             this.tvDB = new System.Windows.Forms.TreeView();
-            this.btnClearTable = new System.Windows.Forms.Button();
             this.pnlDB.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +94,17 @@
             this.pnlDB.Name = "pnlDB";
             this.pnlDB.Size = new System.Drawing.Size(745, 488);
             this.pnlDB.TabIndex = 3;
+            // 
+            // btnClearTable
+            // 
+            this.btnClearTable.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.btnClearTable.Location = new System.Drawing.Point(147, 248);
+            this.btnClearTable.Name = "btnClearTable";
+            this.btnClearTable.Size = new System.Drawing.Size(116, 34);
+            this.btnClearTable.TabIndex = 18;
+            this.btnClearTable.Text = "Clear Table";
+            this.btnClearTable.UseVisualStyleBackColor = true;
+            this.btnClearTable.Click += new System.EventHandler(this.BtnClearTable_Click);
             // 
             // lblSelected
             // 
@@ -277,17 +288,7 @@
             this.tvDB.Size = new System.Drawing.Size(324, 386);
             this.tvDB.TabIndex = 0;
             this.tvDB.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ClickTreeView);
-            // 
-            // btnClearTable
-            // 
-            this.btnClearTable.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnClearTable.Location = new System.Drawing.Point(147, 248);
-            this.btnClearTable.Name = "btnClearTable";
-            this.btnClearTable.Size = new System.Drawing.Size(116, 34);
-            this.btnClearTable.TabIndex = 18;
-            this.btnClearTable.Text = "Clear Table";
-            this.btnClearTable.UseVisualStyleBackColor = true;
-            this.btnClearTable.Click += new System.EventHandler(this.BtnClearTable_Click);
+            this.tvDB.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.DoubleClickTreeView);
             // 
             // frmMain
             // 

@@ -90,6 +90,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="TableViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableViewer.Designer.cs">
+      <DependentUpon>TableViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MySQLApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <Compile Include="SQLvarchar.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="TableCommand.cs" />
+    <EmbeddedResource Include="TableViewer.resx">
+      <DependentUpon>TableViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MySQLApp.resx">
       <DependentUpon>MySQLApp.cs</DependentUpon>
     </EmbeddedResource>
