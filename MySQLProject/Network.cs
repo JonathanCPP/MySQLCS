@@ -109,7 +109,6 @@ namespace MySQLProject
             if (database != string.Empty && name != string.Empty)
             {
                 SendCommand("CREATE TABLE IF NOT EXISTS " + database + '.' + name + '(' + values + ");");
-                MessageBox.Show("CREATE TABLE IF NOT EXISTS " + database + '.' + name + '(' + values + ");");
             }
         }
 
@@ -132,6 +131,7 @@ namespace MySQLProject
             catch (MySql.Data.MySqlClient.MySqlException) { }
         }
 
+        //Faire les requêtes pour mettre à jour la liste des éléments du TreeView
         public void RefreshDBData()
         {
             Databases.Clear();

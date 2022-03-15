@@ -6,6 +6,10 @@ namespace MySQLProject
 {
     public partial class frmMain : Form
     {
+        const string IP_ADDRESS = "localhost";
+        const string USERNAME = "root";
+        const string PASSWORD = "root";
+
         private Network network;
         TreeNode selected;
         TableCommand tableCommand;
@@ -23,7 +27,7 @@ namespace MySQLProject
             btnConnect.Enabled = false;
             if (!network.Connected)
             {
-                if (network.TryConnectToSQLDatabase("localhost", "root", "root"))
+                if (network.TryConnectToSQLDatabase(IP_ADDRESS, USERNAME, PASSWORD))
                 {
                     network.Connected = true;
                     ToggleButton();
@@ -44,6 +48,7 @@ namespace MySQLProject
             btnConnect.Enabled = true;
         }
 
+        //Faire les requêtes nécessaires pour mettre à jour le TreeView
         private void RefreshTreeViewNodes()
         {
             foreach (var db in network.Databases)
@@ -127,7 +132,6 @@ namespace MySQLProject
 
         private void BtnCreateTable_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(tableCommand.GetValues());
             if (txbTableName.Text != string.Empty)
             {
                 network.AddTable(selected.Text, txbTableName.Text, tableCommand.GetValues());
@@ -157,6 +161,7 @@ namespace MySQLProject
             txbTableCreate.Text = text;
         }
 
+        //Ajouter un nouvel élément destiné à être mis dans une table
         private void BtnAddElement_Click(object sender, EventArgs e)
         {
             if (cmbType.Text != string.Empty && txbColName.Text != string.Empty &&

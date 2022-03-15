@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MySQLProject
 {
     public class TableCommand
     {
+        //Création de listes qui vont êtres utilisées pour la création de la commande
         private List<SQLint> _intList = new List<SQLint>();
         private List<SQLvarchar> _varcharList = new List<SQLvarchar>();
         private List<SQLfloat> _floatList = new List<SQLfloat>();
@@ -37,6 +34,7 @@ namespace MySQLProject
             _floatList.Clear();
         }
 
+        //Création du contenu du textbox
         public string GetValues()
         {
             int numOfElements = GetElementCount();
@@ -79,16 +77,12 @@ namespace MySQLProject
             return _intList.Count + _floatList.Count + _varcharList.Count;
         }
 
-        private int GetNumOfElements()
-        {
-            return _intList.Count + _varcharList.Count + _floatList.Count;
-        }
-
+        //Création de la commande SQL
         public string ConvertToCommand()
         {
             string finalText = "CREATE TABLE (";
             int counter = 0;
-            int numOfElements = GetNumOfElements();
+            int numOfElements = GetElementCount();
             for (int i = 0; i < numOfElements; i++)
             {
                 foreach (var integer in _intList)
@@ -129,11 +123,6 @@ namespace MySQLProject
                 }
             }
             return finalText + ");";
-        }
-
-        void RefreshTextBox()
-        {
-
         }
     }
 }
